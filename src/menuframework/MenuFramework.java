@@ -22,6 +22,7 @@ public class MenuFramework {
         
         //run(() -> hi());
         
+        /*
         
         Menu<MenuStringOption> stringyMenu = new Menu<>("Test Menu with strings as options", "Enter Option",
                 new MenuOptionBranch<>(new MenuStringOption("apple"), "Apple", () -> {
@@ -52,5 +53,7 @@ public class MenuFramework {
         );
         
         numericalMenu.display();
+
+        */
     }
 }
