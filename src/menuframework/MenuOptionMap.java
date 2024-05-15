@@ -25,7 +25,7 @@ public class MenuOptionMap<OptionType extends MenuOptionType> implements Map<Opt
     private Set<Entry<OptionType, MenuOptionBranch<? extends OptionType>>> entries; 
     
     public MenuOptionMap() {
-        entries = new LinkedHashSet<>(); // Insertion order 100% matters!
+        entries = new LinkedHashSet<>();
     }
     
     // This whole class just for this

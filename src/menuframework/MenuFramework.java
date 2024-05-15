@@ -3,8 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package menuframework;
-
-import java.util.ArrayList;
+import org.fusesource.jansi.AnsiConsole;
 
 /**
  *
@@ -23,11 +22,12 @@ public class MenuFramework {
         
         //run(() -> hi()); 
         
+        AnsiConsole.systemInstall();
+
         /*
-        
         MenuOptionBranch<MenuOptionType> mob = new MenuOptionBranch<>(new MenuStringOption("d"), "d", () -> {});
         
-        Menu stringyMenu = new Menu("Test Menu with strings as options", "Enter Option",
+        Menu stringyMenu = new Menu("Test Menu with strings as options", "Enter Option", false,
                 new MenuOptionBranch<>(new MenuStringOption("apple"), "Apple", () -> {
                     System.out.println("You like apple juice");
                 }),
@@ -40,7 +40,7 @@ public class MenuFramework {
         
         // Menu with Integer as its selectable options
         // Because java doesn't allow custom boxing/unboxing a  wrapper class is necessary to wrap classes
-        Menu numericalMenu = new Menu("Test Menu with numbers as options", "Enter Option",
+        Menu numericalMenu = new Menu("Test Menu with numbers as options", "Enter Option", true,
                 new MenuOptionBranch<>(new MenuIntegerOption(0), "Print zero", () -> {
                     System.out.println("0");
                 }),
