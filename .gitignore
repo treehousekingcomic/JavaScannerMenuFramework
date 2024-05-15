@@ -18,6 +18,9 @@ nb-configuration.xml
 *.war
 *.ear
 
+# Include Lib
+!/lib/**/*.jar
+
 # Log file
 *.log
 
