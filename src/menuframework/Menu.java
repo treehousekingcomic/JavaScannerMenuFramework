@@ -20,6 +20,13 @@ public class Menu<OptionType extends MenuOptionType> {
     
     protected MenuOptionMap<OptionType> options;
     
+    
+    public Menu(String name, String prompt) {
+        this.name = name;
+        this.prompt = prompt;
+        
+        this.options = new MenuOptionMap<>();
+    }
     @SafeVarargs // only reading
     public Menu(String name, String prompt, MenuOptionBranch<OptionType>... branches) {
         this.name = name;
@@ -30,6 +37,20 @@ public class Menu<OptionType extends MenuOptionType> {
             this.options.put(mob.getIdentifier(), mob);
         }
     }
+
+    public MenuOptionMap<OptionType> getOptions() {
+        return options;
+    }
+    public void clearOptions() {
+        options.clear();
+    }
+    public MenuOptionBranch<OptionType> addOption(MenuOptionBranch<OptionType> mob) {
+        return options.put(mob.getIdentifier(), mob);
+    }
+    public MenuOptionBranch<OptionType> removeOption(MenuOptionBranch<OptionType> mob) {
+        return options.remove(mob.getIdentifier());
+    }
+    
     
     public void display() {
         MenuOptionBranch<OptionType> choice = null;
