@@ -10,7 +10,7 @@ import java.util.Scanner;
  *
  * @author Ali
  */
-public class Menu<OptionType extends MenuOptionType> {
+public class Menu {
     
     public static final String LOOSE_PROMPT_CHARACTER = " > ";
     public static final String STRICT_PROMPT_SYMBOL = " # ";
@@ -18,7 +18,7 @@ public class Menu<OptionType extends MenuOptionType> {
     protected String name;
     protected String prompt;
     
-    protected MenuOptionMap<OptionType> options;
+    protected MenuOptionMap<MenuOptionType> options;
     
     
     public Menu(String name, String prompt) {
@@ -28,38 +28,38 @@ public class Menu<OptionType extends MenuOptionType> {
         this.options = new MenuOptionMap<>();
     }
     @SafeVarargs // only reading
-    public Menu(String name, String prompt, MenuOptionBranch<OptionType>... branches) {
+    public Menu(String name, String prompt, MenuOptionBranch<? extends MenuOptionType> ... branches) {
         this.name = name;
         this.prompt = prompt;
         
         this.options = new MenuOptionMap<>();
-        for (MenuOptionBranch<OptionType> mob : branches) {
+        for (MenuOptionBranch<? extends MenuOptionType> mob : branches) {
             this.options.put(mob.getIdentifier(), mob);
         }
     }
 
-    public MenuOptionMap<OptionType> getOptions() {
+    public MenuOptionMap getOptions() {
         return options;
     }
     public void clearOptions() {
         options.clear();
     }
-    public MenuOptionBranch<OptionType> addOption(MenuOptionBranch<OptionType> mob) {
+    public MenuOptionBranch addOption(MenuOptionBranch<? extends MenuOptionType> mob) {
         return options.put(mob.getIdentifier(), mob);
     }
-    public MenuOptionBranch<OptionType> removeOption(MenuOptionBranch<OptionType> mob) {
+    public MenuOptionBranch removeOption(MenuOptionBranch mob) {
         return options.remove(mob.getIdentifier());
     }
     
     
     public void display() {
-        MenuOptionBranch<OptionType> choice = null;
+        MenuOptionBranch choice = null;
         while (choice == null) {
             System.out.println("*TODO* CLEAR SCREEN" + "\n".repeat(5));
             System.out.println(name);
             System.out.println("-".repeat(name.length()));
 
-            for (MenuOptionBranch<OptionType> mob : options.values()) {
+            for (MenuOptionBranch mob : options.values()) {
                 System.out.println(String.format("[%s] - %s", mob.getIdentifier(), mob.getName()));
             }
             

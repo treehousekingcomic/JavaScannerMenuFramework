@@ -8,6 +8,6 @@ package menuframework;
  *
  * @author 6235181
  */
-public interface Menuable<OptionType  extends MenuOptionType> {
-    Menu<MenuOptionType> getMenu();
+public interface Menuable {
+    Menu getMenu();
 }

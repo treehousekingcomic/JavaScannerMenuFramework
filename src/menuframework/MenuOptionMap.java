@@ -21,16 +21,16 @@ import java.util.Set;
  *
  * @author Ali
  */
-public class MenuOptionMap<OptionType extends MenuOptionType> implements Map<OptionType, MenuOptionBranch<OptionType>> {
-    private Set<Entry<OptionType, MenuOptionBranch<OptionType>>> entries; 
+public class MenuOptionMap<OptionType extends MenuOptionType> implements Map<OptionType, MenuOptionBranch<? extends OptionType>> {
+    private Set<Entry<OptionType, MenuOptionBranch<? extends OptionType>>> entries; 
     
     public MenuOptionMap() {
         entries = new LinkedHashSet<>(); // Insertion order 100% matters!
     }
     
     // This whole class just for this
-    public MenuOptionBranch<OptionType> getRaw(String raw) {
-        for (Entry<OptionType, MenuOptionBranch<OptionType>> entry : entries) {
+    public MenuOptionBranch<? extends OptionType> getRaw(String raw) {
+        for (Entry<OptionType, MenuOptionBranch<? extends OptionType>> entry : entries) {
             if (entry.getKey().is(raw)) {
                 return entry.getValue();
             }
@@ -52,7 +52,7 @@ public class MenuOptionMap<OptionType extends MenuOptionType> implements Map<Opt
 
     @Override
     public boolean containsKey(Object key) {
-        for (Entry<OptionType, MenuOptionBranch<OptionType>> entry : entries) {
+        for (Entry<OptionType, MenuOptionBranch<? extends OptionType>> entry : entries) {
             if (Objects.equals(entry.getKey(), key)) {
                 return true;
             }
@@ -62,7 +62,7 @@ public class MenuOptionMap<OptionType extends MenuOptionType> implements Map<Opt
 
     @Override
     public boolean containsValue(Object value) {
-        for (Entry<OptionType, MenuOptionBranch<OptionType>> entry : entries) {
+        for (Entry<OptionType, MenuOptionBranch<? extends OptionType>> entry : entries) {
             if (Objects.equals(entry.getValue(), value)) {
                 return true;
             }
@@ -71,8 +71,8 @@ public class MenuOptionMap<OptionType extends MenuOptionType> implements Map<Opt
     }
 
     @Override
-    public MenuOptionBranch<OptionType> get(Object key) {
-        for (Entry<OptionType, MenuOptionBranch<OptionType>> entry : entries) {
+    public MenuOptionBranch<? extends OptionType> get(Object key) {
+        for (Entry<OptionType, MenuOptionBranch<? extends OptionType>> entry : entries) {
             if (Objects.equals(entry.getKey(), key)) {
                 return entry.getValue();
             }
@@ -81,16 +81,16 @@ public class MenuOptionMap<OptionType extends MenuOptionType> implements Map<Opt
     }
 
     @Override
-    public MenuOptionBranch<OptionType> put(OptionType key, MenuOptionBranch<OptionType> value) {
+    public MenuOptionBranch<? extends OptionType> put(OptionType key, MenuOptionBranch<? extends OptionType> value) {
         if (key == null || value == null) {
             throw new NullPointerException("Key or value cannot be null");
         }
         
         // Check if the key already exists
-        for (Entry<OptionType, MenuOptionBranch<OptionType>> entry : entries) {
+        for (Entry<OptionType, MenuOptionBranch<? extends OptionType>> entry : entries) {
             if (Objects.equals(entry.getKey(), key)) {
                 // If key exists, update the value
-                MenuOptionBranch<OptionType> oldValue = entry.getValue();
+                MenuOptionBranch<? extends OptionType> oldValue = entry.getValue();
                 entry.setValue(value);
                 return oldValue;
             }
@@ -101,10 +101,10 @@ public class MenuOptionMap<OptionType extends MenuOptionType> implements Map<Opt
     }
 
     @Override
-    public MenuOptionBranch<OptionType> remove(Object key) {
-        Iterator<Entry<OptionType, MenuOptionBranch<OptionType>>> iterator = entries.iterator();
+    public MenuOptionBranch<? extends OptionType> remove(Object key) {
+        Iterator<Entry<OptionType, MenuOptionBranch<? extends OptionType>>> iterator = entries.iterator();
         while (iterator.hasNext()) {
-            Entry<OptionType, MenuOptionBranch<OptionType>> entry = iterator.next();
+            Entry<OptionType, MenuOptionBranch<? extends OptionType>> entry = iterator.next();
             if (Objects.equals(entry.getKey(), key)) {
                 iterator.remove();
                 return entry.getValue();
@@ -114,8 +114,8 @@ public class MenuOptionMap<OptionType extends MenuOptionType> implements Map<Opt
     }
 
     @Override
-    public void putAll(Map<? extends OptionType, ? extends MenuOptionBranch<OptionType>> m) {
-        for (Entry<? extends OptionType, ? extends MenuOptionBranch<OptionType>> entry : m.entrySet()) {
+    public void putAll(Map<? extends OptionType, ? extends MenuOptionBranch<? extends OptionType>> m) {
+        for (Entry<? extends OptionType, ? extends MenuOptionBranch<? extends OptionType>> entry : m.entrySet()) {
             put(entry.getKey(), entry.getValue());
         }
     }
@@ -128,23 +128,23 @@ public class MenuOptionMap<OptionType extends MenuOptionType> implements Map<Opt
     @Override
     public Set<OptionType> keySet() {
         Set<OptionType> keySet = new LinkedHashSet<>();
-        for (Entry<OptionType, MenuOptionBranch<OptionType>> entry : entries) {
+        for (Entry<OptionType, MenuOptionBranch<? extends OptionType>> entry : entries) {
             keySet.add(entry.getKey());
         }
         return keySet;
     }
 
     @Override
-    public Collection<MenuOptionBranch<OptionType>> values() {
-        List<MenuOptionBranch<OptionType>> values = new ArrayList<>();
-        for (Entry<OptionType, MenuOptionBranch<OptionType>> entry : entries) {
+    public Collection<MenuOptionBranch<? extends OptionType>> values() {
+        List<MenuOptionBranch<? extends OptionType>> values = new ArrayList<>();
+        for (Entry<OptionType, MenuOptionBranch<? extends OptionType>> entry : entries) {
             values.add(entry.getValue());
         }
         return values;
     }
 
     @Override
-    public Set<Entry<OptionType, MenuOptionBranch<OptionType>>> entrySet() {
+    public Set<Entry<OptionType, MenuOptionBranch<? extends OptionType>>> entrySet() {
         return entries;
     }
 
