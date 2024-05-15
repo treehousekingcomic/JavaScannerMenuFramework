@@ -4,6 +4,7 @@
  */
 package menuframework;
 
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import org.fusesource.jansi.Ansi;
 
@@ -62,7 +63,7 @@ public class Menu {
     public void display() {
         MenuOptionBranch choice = null;
         while (choice == null) {
-            System.out.println("\033\143");
+            System.out.print("\033\143");
             System.out.println(name);
             System.out.println("-".repeat(name.length()));
 
@@ -83,7 +84,13 @@ public class Menu {
             }
 
             Scanner input = new Scanner(System.in);
-            String raw = input.nextLine();
+            String raw;
+            try {
+                raw = input.nextLine();
+            }
+            catch (NoSuchElementException nseE) {
+                continue;
+            }
             
             if (isAbortable) {
                 System.out.println(Ansi.ansi().cursorDown(0));

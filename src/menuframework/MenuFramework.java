@@ -23,8 +23,9 @@ public class MenuFramework {
         //run(() -> hi()); 
         
         AnsiConsole.systemInstall();
-
+        
         /*
+
         MenuOptionBranch<MenuOptionType> mob = new MenuOptionBranch<>(new MenuStringOption("d"), "d", () -> {});
         
         Menu stringyMenu = new Menu("Test Menu with strings as options", "Enter Option", false,
@@ -54,7 +55,7 @@ public class MenuFramework {
         );
         
         numericalMenu.display();
-
+        
         */
     }
 }
