@@ -61,6 +61,7 @@ public class Menu {
     
     
     public void display() {
+        String raw = null;
         MenuOptionBranch choice = null;
         while (choice == null) {
             System.out.print("\033\143");
@@ -84,7 +85,6 @@ public class Menu {
             }
 
             Scanner input = new Scanner(System.in);
-            String raw;
             try {
                 raw = input.nextLine();
             }
@@ -101,6 +101,6 @@ public class Menu {
 
             choice = options.getRaw(raw);
         }
-        choice.getFunction().execute();
+        choice.getFunction().execute(raw);
     }
 }

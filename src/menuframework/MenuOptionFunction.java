@@ -10,5 +10,5 @@ package menuframework;
  */
 @FunctionalInterface
 public interface MenuOptionFunction {
-    void execute();
+    void execute(String raw);
 }
