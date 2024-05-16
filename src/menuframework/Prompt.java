@@ -31,8 +31,6 @@ public class Prompt<ObjectType, PromptType extends Promptable<ObjectType>> {
         
         this.branch = branch;
     }
-    public Prompt(String prompt, boolean abortable, boolean clearScreen) {
-    }
     
     public String getPrompt() {
         return prompt;
@@ -47,7 +45,7 @@ public class Prompt<ObjectType, PromptType extends Promptable<ObjectType>> {
         this.branch = branch;
     }
     
-    public ObjectType display() {
+    public ObjectType ask() {
         String raw = null;
         ObjectType result = null;
         PromptBranch choice = null;
