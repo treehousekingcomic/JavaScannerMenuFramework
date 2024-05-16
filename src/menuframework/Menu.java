@@ -31,9 +31,8 @@ public class Menu {
         this.isAbortable = false;
         
         this.options = new MenuOptionMap<>();
-        
-        
     }
+    
     @SafeVarargs // only reading
     public Menu(String name, String prompt, boolean abortable, MenuOptionBranch<? extends MenuOptionType> ... branches) {
         this.name = name;

@@ -25,6 +25,14 @@ public class MenuFramework {
         AnsiConsole.systemInstall();
         
         /*
+        Prompt<String, PromptStringPromptable> prompt = new Prompt<>("Enter string", true, true, 
+                new PromptBranch<>(new PromptStringPromptable(), (raw) -> {})
+        );
+        String r = prompt.display();
+        System.out.println(r);
+        */
+        
+        /*
         MenuOptionBranch<MenuOptionType> mob = new MenuOptionBranch<>(new MenuStringOption("d"), "d", (raw) -> {});
         
         Menu stringyMenu = new Menu("Test Menu with strings as options", "Enter Option", false,
