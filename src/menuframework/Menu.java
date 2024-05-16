@@ -58,6 +58,26 @@ public class Menu {
     public MenuOptionBranch removeOption(MenuOptionBranch mob) {
         return options.remove(mob.getIdentifier());
     }
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getPrompt() {
+        return prompt;
+    }
+    public void setPrompt(String prompt) {
+        this.prompt = prompt;
+    }
+    public boolean isIsAbortable() {
+        return isAbortable;
+    }
+    public void setIsAbortable(boolean isAbortable) {
+        this.isAbortable = isAbortable;
+    }
+    
     
     
     public void display() {
