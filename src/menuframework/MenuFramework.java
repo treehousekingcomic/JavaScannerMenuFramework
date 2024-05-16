@@ -28,7 +28,7 @@ public class MenuFramework {
         Prompt<String, PromptStringPromptable> prompt = new Prompt<>("Enter string", true, true, 
                 new PromptBranch<>(new PromptStringPromptable(), (raw) -> {})
         );
-        String r = prompt.display();
+        String r = prompt.ask();
         System.out.println(r);
         */
         

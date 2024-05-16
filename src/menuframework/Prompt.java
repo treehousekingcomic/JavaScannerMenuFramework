@@ -46,11 +46,15 @@ public class Prompt<ObjectType, PromptType extends Promptable<ObjectType>> {
     }
     
     public ObjectType ask() {
+        int tries = 0;
         String raw = null;
         ObjectType result = null;
         PromptBranch choice = null;
         while (choice == null) {
             if (clearSreen) System.out.print("\033\143");
+            
+            if (tries != 0) System.out.println("Invalid input entered");
+            tries++;
             
             String _prompt = prompt + (isAbortable ? LOOSE_PROMPT_CHARACTER : STRICT_PROMPT_SYMBOL);
             System.out.println("-".repeat(_prompt.length()));
