@@ -8,7 +8,7 @@ package menuframework;
  *
  * @author Ali
  */
-public class PromptStringPromptable implements Promptable<String> {
+public class PromptStringPromptable implements Promptable<String> { 
 
     @Override
     public String safisfies(String raw) {

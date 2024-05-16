@@ -10,10 +10,21 @@ package menuframework;
  */
 public class PromptIntegerPromptable implements Promptable<Integer> {
     
+    protected boolean positiveOnly;
+    
+    public PromptIntegerPromptable() {
+        this.positiveOnly = false;
+    }
+    public PromptIntegerPromptable(boolean positiveOnly) {
+        this.positiveOnly = positiveOnly;
+    }
+    
     @Override
     public Integer safisfies(String raw) {    
         try {
-            return Integer.valueOf(raw);
+            Integer integer = Integer.valueOf(raw);
+            if (positiveOnly && integer < 0) return null;
+            return integer;
         } catch (NumberFormatException nfE) {
             return null;
         }
